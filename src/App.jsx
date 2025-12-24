@@ -61,7 +61,6 @@ export default function App() {
           <Route path="/lender-branches/add" element={<EditLenderBranch />} />
           <Route path="/lender-branches/edit/:id" element={<EditLenderBranch />} />
           <Route path="/aggregators/view/:id" element={<ViewAggregator />} />
-
         </Routes>
 
       </div>

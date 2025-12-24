@@ -3,12 +3,12 @@ import LenderToolbar from "../components/LenderToolbar";
 import LenderTableCard from "../components/LenderTableCard";
 import "./LenderMaster.css";
 
-export default function LenderMaster() {
+export default function LenderMaster({ lenders }) {
   return (
     <div className="lender-page">
       <LenderPageHeader />
       <LenderToolbar />
-      <LenderTableCard />
+      <LenderTableCard lenders={lenders} />
     </div>
   );
 }

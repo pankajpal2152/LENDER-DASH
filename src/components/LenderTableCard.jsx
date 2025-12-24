@@ -7,9 +7,9 @@ export default function LenderTableCard() {
   const navigate = useNavigate();
 
   /* =====================
-     DUMMY DATA
+     DUMMY DATA (NOW MUTABLE)
      ===================== */
-  const [lenders] = useState([
+  const [lenders, setLenders] = useState([
     { id: 1, code: "LND001", name: "Shriram Finance Ltd", type: "NBFC", region: "West Bengal", active: true },
     { id: 2, code: "LND002", name: "HDFC Finance", type: "Bank", region: "Maharashtra", active: false },
     { id: 3, code: "LND003", name: "Bajaj Finserv", type: "NBFC", region: "Karnataka", active: true },
@@ -23,11 +23,24 @@ export default function LenderTableCard() {
   ]);
 
   /* =====================
+     TOGGLE HANDLER (FIX)
+     ===================== */
+  const handleToggle = (id) => {
+    setLenders((prev) =>
+      prev.map((lender) =>
+        lender.id === id
+          ? { ...lender, active: !lender.active }
+          : lender
+      )
+    );
+  };
+
+  /* =====================
      SORTING STATE
      ===================== */
   const [sortConfig, setSortConfig] = useState({
     key: null,
-    direction: null, // 'asc' | 'desc'
+    direction: null,
   });
 
   const handleSort = (key) => {
@@ -127,10 +140,14 @@ export default function LenderTableCard() {
                 <td>{lender.type}</td>
                 <td>{lender.region}</td>
 
-                {/* Toggle */}
+                {/* ✅ WORKING TOGGLE */}
                 <td>
                   <label className="switch">
-                    <input type="checkbox" checked={lender.active} readOnly />
+                    <input
+                      type="checkbox"
+                      checked={lender.active}
+                      onChange={() => handleToggle(lender.id)}
+                    />
                     <span className="slider" />
                   </label>
                 </td>

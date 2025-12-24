@@ -18,9 +18,8 @@ export default function Sidebar({ isOpen, isMobile, closeSidebar }) {
 
   return (
     <aside
-      className={`sidebar ${isOpen ? "open" : "collapsed"} ${
-        isMobile ? "mobile" : ""
-      }`}
+      className={`sidebar ${isOpen ? "open" : "collapsed"} ${isMobile ? "mobile" : ""
+        }`}
     >
       {/* ===== BRAND ===== */}
       <div className="brand">

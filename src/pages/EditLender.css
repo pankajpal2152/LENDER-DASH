@@ -1,10 +1,6 @@
-.edit-lender-page {
-  padding: 24px;
-}
-
 .edit-lender-card {
-  max-width: 600px;
-  margin: auto;
+  max-width: 100%;
+  margin: 40px;
 }
 
 .edit-form {
@@ -12,9 +8,12 @@
   flex-direction: column;
   gap: 14px;
 }
+
 .edit-lender-title {
-  margin-bottom: 25px; /* ✅ EXACT 25px gap */
+  margin-bottom: 25px;
+  /* ✅ EXACT 25px gap */
 }
+
 .edit-form label {
   display: flex;
   flex-direction: column;
@@ -65,6 +64,7 @@
   font-size: 12px;
   margin-top: 4px;
 }
+
 /* =====================
    ID APPLICABLE INLINE FIX
    ===================== */
@@ -72,12 +72,14 @@
 .id-applicable-row {
   display: flex;
   align-items: center;
-  gap: 20px; /* ✅ exact spacing */
+  gap: 20px;
+  /* ✅ exact spacing */
   margin-top: 8px;
 }
 
 /* Force same color as other form labels */
 .id-applicable-label {
   font-size: 14px;
-  color: var(--text-primary); /* ✅ SAME token as all labels */
+  color: var(--text-primary);
+  /* ✅ SAME token as all labels */
 }

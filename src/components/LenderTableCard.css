@@ -81,11 +81,11 @@ body[data-theme="dark"] td {
 }
 
 /* Active */
-.switch input:checked + .slider {
+.switch input:checked+.slider {
   background-color: #6366f1;
 }
 
-.switch input:checked + .slider::before {
+.switch input:checked+.slider::before {
   transform: translateX(20px);
 }
 
@@ -94,7 +94,7 @@ body[data-theme="dark"] .slider {
   background-color: #334155;
 }
 
-body[data-theme="dark"] .switch input:checked + .slider {
+body[data-theme="dark"] .switch input:checked+.slider {
   background-color: #818cf8;
 }
 

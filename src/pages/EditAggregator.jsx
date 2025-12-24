@@ -1,7 +1,7 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import "./EditLender.css"; // ✅ reuse same form styles
 import LenderPageHeader from "../components/LenderPageHeader";
+import "./EditLender.css";
 
 /* =====================
    DEFAULT MODEL – AGGREGATOR
@@ -37,9 +37,11 @@ const EMPTY_AGGREGATOR = {
 };
 
 export default function EditAggregator() {
-    const { id } = useParams();
+    const { id } = useParams(); // present only in edit
     const navigate = useNavigate();
     const location = useLocation();
+
+    const isEdit = Boolean(id);
 
     const [formData, setFormData] = useState({
         ...EMPTY_AGGREGATOR,
@@ -47,7 +49,7 @@ export default function EditAggregator() {
     });
 
     /* =====================
-       LOAD DATA (FROM TABLE → EDIT)
+       LOAD DATA (EDIT MODE)
        ===================== */
     useEffect(() => {
         if (location.state) {
@@ -72,20 +74,24 @@ export default function EditAggregator() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Updated Aggregator:", formData);
+
+        console.log(isEdit ? "Updated Aggregator:" : "Created Aggregator:", formData);
+
         navigate("/aggregators");
     };
 
     return (
         <div className="lender-form-page">
-            {/* ✅ SAME HEADER STYLE */}
             <LenderPageHeader />
 
             <div className="edit-lender-page">
                 <div className="card edit-lender-card full-width">
-                    <h2 className="edit-lender-title">Edit Aggregator</h2>
+                    <h2 className="edit-lender-title">
+                        {isEdit ? "Edit Aggregator" : "Add Aggregator"}
+                    </h2>
 
                     <form className="edit-form" onSubmit={handleSubmit}>
+                        {/* ===== BASIC DETAILS ===== */}
                         <label>
                             ID (UUID)
                             <input value={formData.id} disabled />
@@ -97,6 +103,7 @@ export default function EditAggregator() {
                                 name="aggregatorCode"
                                 value={formData.aggregatorCode}
                                 onChange={handleChange}
+                                required
                             />
                         </label>
 
@@ -106,9 +113,11 @@ export default function EditAggregator() {
                                 name="aggregatorName"
                                 value={formData.aggregatorName}
                                 onChange={handleChange}
+                                required
                             />
                         </label>
 
+                        {/* ===== CONTACT ===== */}
                         <label>
                             Contact Person Name
                             <input
@@ -136,6 +145,7 @@ export default function EditAggregator() {
                             />
                         </label>
 
+                        {/* ===== ADDRESS ===== */}
                         <label>
                             Office Address
                             <input
@@ -159,6 +169,7 @@ export default function EditAggregator() {
                             />
                         </label>
 
+                        {/* ===== SERVICE ===== */}
                         <label>
                             Service Coverage
                             <input
@@ -191,7 +202,7 @@ export default function EditAggregator() {
                             />
                         </label>
 
-                        {/* LD APPLICABLE */}
+                        {/* ===== LD ===== */}
                         <div className="id-applicable-row">
                             <span className="id-applicable-label">LD Applicable</span>
                             <input
@@ -206,6 +217,7 @@ export default function EditAggregator() {
                             LD Percentage Cap
                             <input
                                 type="number"
+                                step="0.01"
                                 name="ldPercentageCap"
                                 value={formData.ldPercentageCap}
                                 onChange={handleChange}
@@ -213,27 +225,19 @@ export default function EditAggregator() {
                             />
                         </label>
 
-                        <div className="billing-cycle">
-                            <label>
-                                Billing Cycle From
-                                <input
-                                    type="datetime-local"
-                                    name="billing_from"
-                                    value={formData.billingCycle.from}
-                                    onChange={handleChange}
-                                />
-                            </label>
-
-                            <label>
-                                Billing Cycle To
-                                <input
-                                    type="datetime-local"
-                                    name="billing_to"
-                                    value={formData.billingCycle.to}
-                                    onChange={handleChange}
-                                />
-                            </label>
-                        </div>
+                        {/* ===== BILLING ===== */}
+                        <label>
+                            Billing Cycle
+                            <select
+                                name="billingCycle"
+                                value={formData.billingCycle}
+                                onChange={handleChange}
+                            >
+                                <option value="">Select</option>
+                                <option value="PUBLIC">PUBLIC</option>
+                                <option value="PRIVATE">PRIVATE</option>
+                            </select>
+                        </label>
 
                         <label>
                             Payment Terms Days
@@ -245,6 +249,7 @@ export default function EditAggregator() {
                             />
                         </label>
 
+                        {/* ===== CONTRACT ===== */}
                         <label>
                             Contract Start Date
                             <input
@@ -265,6 +270,7 @@ export default function EditAggregator() {
                             />
                         </label>
 
+                        {/* ===== BANK ===== */}
                         <label>
                             Bank Name
                             <input
@@ -310,6 +316,7 @@ export default function EditAggregator() {
                             />
                         </label>
 
+                        {/* ===== STATUS ===== */}
                         <label>
                             Aggregator Status
                             <select
@@ -332,6 +339,7 @@ export default function EditAggregator() {
                             />
                         </label>
 
+                        {/* ===== AUDIT ===== */}
                         <label>
                             Created At
                             <input
@@ -357,7 +365,7 @@ export default function EditAggregator() {
                                 Cancel
                             </button>
                             <button type="submit" className="primary">
-                                Update
+                                {isEdit ? "Update" : "Create"}
                             </button>
                         </div>
                     </form>

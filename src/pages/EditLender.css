@@ -1,0 +1,53 @@
+.edit-lender-page {
+  padding: 24px;
+}
+
+.edit-lender-card {
+  max-width: 600px;
+  margin: auto;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.edit-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #374151;
+}
+
+.edit-form input,
+.edit-form select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+.checkbox-row {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.form-actions button {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.form-actions .primary {
+  background: #4f46e5;
+  color: white;
+}

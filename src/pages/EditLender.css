@@ -12,7 +12,9 @@
   flex-direction: column;
   gap: 14px;
 }
-
+.edit-lender-title {
+  margin-bottom: 25px; /* ✅ EXACT 25px gap */
+}
 .edit-form label {
   display: flex;
   flex-direction: column;
@@ -50,4 +52,32 @@
 .form-actions .primary {
   background: #4f46e5;
   color: white;
+}
+
+.billing-cycle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.error {
+  color: #dc2626;
+  font-size: 12px;
+  margin-top: 4px;
+}
+/* =====================
+   ID APPLICABLE INLINE FIX
+   ===================== */
+
+.id-applicable-row {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* ✅ exact spacing */
+  margin-top: 8px;
+}
+
+/* Force same color as other form labels */
+.id-applicable-label {
+  font-size: 14px;
+  color: var(--text-primary); /* ✅ SAME token as all labels */
 }

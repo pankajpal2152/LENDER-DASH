@@ -5,6 +5,8 @@ import Header from "./components/Header";
 import LenderMaster from "./pages/LenderMaster";
 import EditLender from "./pages/EditLender";
 import AddLender from "./pages/AddLender";
+import EditAggregator from "./pages/EditAggregator";
+
 
 
 import "./App.css";
@@ -50,8 +52,10 @@ export default function App() {
         <Routes>
           <Route path="/" element={<div>Dashboard (Coming Soon)</div>} />
           <Route path="/lenders" element={<LenderMaster />} />
-          <Route path="/lenders/add" element={<AddLender />} />
+          {/* <Route path="/lenders/add" element={<AddLender />} /> */}
           <Route path="/lenders/edit/:id" element={<EditLender />} />
+          <Route path="/aggregators/edit/:id" element={<EditAggregator />} />
+
         </Routes>
 
       </div>

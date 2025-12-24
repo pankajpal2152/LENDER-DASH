@@ -222,7 +222,6 @@ export default function EditLender() {
                             ID Percentage Cap
                             <input
                                 type="number"
-                                step="0.01"
                                 name="idPercentageCap"
                                 value={formData.idPercentageCap}
                                 onChange={handleChange}

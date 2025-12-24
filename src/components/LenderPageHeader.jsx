@@ -17,8 +17,8 @@ export default function LenderPageHeader() {
                         <Link to="/" className="breadcrumb-home">
                             Home
                         </Link>
-                        <span className="breadcrumb-separator">•</span>
-                        <span>Lender List</span>
+                        <span className="breadcrumb-separator">></span>
+                        {/* <span>Lender List</span> */}
                     </p>
                 </div>
 

@@ -1,8 +1,8 @@
 .edit-lender-card {
   max-width: 100%;
-  margin-top: 35PX;
-  margin-LEFT: 100px;
-  margin-RIGHT: 100px;
+  margin-top: 35px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 /* =====================
@@ -42,25 +42,8 @@
    FULL WIDTH ROWS
    ===================== */
 
-.edit-form.two-column .id-applicable-row,
 .edit-form.two-column .form-actions {
   grid-column: 1 / -1;
-}
-
-/* =====================
-   ID APPLICABLE
-   ===================== */
-
-.id-applicable-row {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-top: 8px;
-}
-
-.id-applicable-label {
-  font-size: 14px;
-  color: var(--text-primary);
 }
 
 /* =====================
@@ -87,65 +70,14 @@
 }
 
 /* =====================
-   FORM ROW SPACING FIX
-   ===================== */
-
-.form-row {
-  display: contents; /* keeps 2-column grid */
-}
-
-/* restore vertical rhythm between rows */
-.edit-form.two-column > * {
-  margin-bottom: 14px;
-}
-
-
-/* =====================
-   CHECKBOX ALIGNMENT FIX
-   ===================== */
-
-.checkbox-field {
-  display: flex;
-  flex-direction: column;
-  gap: 6px; /* same vertical spacing as inputs */
-  font-size: 14px;
-  color: #374151;
-}
-
-/* Label behaves like other labels */
-.checkbox-label {
-  font-size: 14px;
-  color: #374151;
-}
-
-/* This aligns checkbox with input start */
-.checkbox-input {
-  display: flex;
-  align-items: center;
-  height: 42px; /* SAME visual height as inputs */
-  padding-left: 10px; /* SAME left padding as inputs */
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-}
-
-/* Actual checkbox */
-.checkbox-input input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
-}
-
-
-/* =====================
-   LD INLINE FIELD
+   INLINE CHECKBOX FIELD
    ===================== */
 
 .ld-inline-field {
   display: flex;
   align-items: center;
-  gap: 12px;              /* space between label & checkbox */
-  height: 42px;           /* same visual height as inputs */
-  padding-left: 2px;      /* optical alignment with inputs */
+  gap: 12px;
+  height: 42px;
   font-size: 14px;
   color: #374151;
 }
@@ -154,10 +86,8 @@
   white-space: nowrap;
 }
 
-/* checkbox size consistency */
 .ld-inline-field input[type="checkbox"] {
   width: 18px;
   height: 18px;
   cursor: pointer;
 }
-

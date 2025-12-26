@@ -1,9 +1,7 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import "./EditLender.css";
 import LenderPageHeader from "../components/LenderPageHeader";
-
-
+import "./EditLender.css";
 
 /* =====================
    DEFAULT MODEL
@@ -21,12 +19,10 @@ const EMPTY_LENDER = {
     region: "",
     gstNumber: "",
     panNumber: "",
-
     billingCycle: {
         from: "",
         to: "",
     },
-
     paymentTermsDays: "",
     idApplicable: false,
     idPercentageCap: "",
@@ -50,9 +46,6 @@ export default function EditLender() {
         id,
     });
 
-    /* =====================
-       LOAD DATA
-       ===================== */
     useEffect(() => {
         if (location.state) {
             setFormData({
@@ -66,9 +59,6 @@ export default function EditLender() {
         }
     }, [location.state]);
 
-    /* =====================
-       HANDLE CHANGE
-       ===================== */
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
 
@@ -99,14 +89,15 @@ export default function EditLender() {
     return (
         <div className="lender-form-page">
             <LenderPageHeader />
+
             <div className="edit-lender-page">
                 <div className="card edit-lender-card full-width">
                     <h2 className="edit-lender-title">Edit Lender</h2>
 
-
-                    <form className="edit-form" onSubmit={handleSubmit}>
+                    {/* ✅ SAME STRUCTURE AS EDIT AGGREGATOR */}
+                    <form className="edit-form two-column" onSubmit={handleSubmit}>
                         <label>
-                            ID (UUID)
+                            ID
                             <input value={formData.id} disabled />
                         </label>
 
@@ -169,46 +160,9 @@ export default function EditLender() {
                             <input name="panNumber" value={formData.panNumber} onChange={handleChange} />
                         </label>
 
-                        {/* =====================
-             BILLING CYCLE (TIMESTAMP)
-             ===================== */}
-                        <div className="billing-cycle">
-                            <label>
-                                Billing Cycle From
-                                <input
-                                    type="datetime-local"
-                                    name="billing_from"
-                                    value={formData.billingCycle.from}
-                                    onChange={handleChange}
-                                />
-                            </label>
-
-                            <label>
-                                Billing Cycle To
-                                <input
-                                    type="datetime-local"
-                                    name="billing_to"
-                                    value={formData.billingCycle.to}
-                                    onChange={handleChange}
-                                />
-                            </label>
-                        </div>
-
-                        <label>
-                            Payment Terms Days
-                            <input
-                                type="number"
-                                name="paymentTermsDays"
-                                value={formData.paymentTermsDays}
-                                onChange={handleChange}
-                            />
-                        </label>
-
-                        {/* =====================
-   ID APPLICABLE (STRICT INLINE)
-   ===================== */}
-                        <div className="id-applicable-row">
-                            <span className="id-applicable-label">ID Applicable</span>
+                        {/* ===== INLINE ID APPLICABLE ===== */}
+                        <div className="ld-inline-field">
+                            <span className="ld-inline-label">ID Applicable</span>
                             <input
                                 type="checkbox"
                                 name="idApplicable"
@@ -216,7 +170,6 @@ export default function EditLender() {
                                 onChange={handleChange}
                             />
                         </div>
-
 
                         <label>
                             ID Percentage Cap
@@ -227,6 +180,31 @@ export default function EditLender() {
                                 onChange={handleChange}
                                 disabled={!formData.idApplicable}
                             />
+                        </label>
+
+                        <label>
+                            Billing Cycle From
+                            <input
+                                type="datetime-local"
+                                name="billing_from"
+                                value={formData.billingCycle.from}
+                                onChange={handleChange}
+                            />
+                        </label>
+
+                        <label>
+                            Billing Cycle To
+                            <input
+                                type="datetime-local"
+                                name="billing_to"
+                                value={formData.billingCycle.to}
+                                onChange={handleChange}
+                            />
+                        </label>
+
+                        <label>
+                            Payment Terms Days
+                            <input type="number" name="paymentTermsDays" value={formData.paymentTermsDays} onChange={handleChange} />
                         </label>
 
                         <label>
@@ -274,6 +252,7 @@ export default function EditLender() {
                             <input type="date" name="updateDate" value={formData.updateDate} onChange={handleChange} />
                         </label>
 
+                        {/* FULL WIDTH – CENTERED */}
                         <div className="form-actions">
                             <button type="button" onClick={() => navigate("/lenders")}>Cancel</button>
                             <button type="submit" className="primary">Update</button>

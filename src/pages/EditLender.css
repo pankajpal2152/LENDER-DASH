@@ -1,17 +1,26 @@
 .edit-lender-card {
   max-width: 100%;
-  margin: 40px;
+  margin-top: 35PX;
+  margin-LEFT: 100px;
+  margin-RIGHT: 100px;
 }
 
-.edit-form {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+/* =====================
+   TWO COLUMN FORM
+   ===================== */
+
+.edit-form.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 24px;
 }
+
+/* =====================
+   COMMON FORM STYLES
+   ===================== */
 
 .edit-lender-title {
   margin-bottom: 25px;
-  /* ✅ EXACT 25px gap */
 }
 
 .edit-form label {
@@ -26,23 +35,47 @@
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #d1d5db;
+  width: 100%;
 }
 
-.checkbox-row {
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
+/* =====================
+   FULL WIDTH ROWS
+   ===================== */
+
+.edit-form.two-column .id-applicable-row,
+.edit-form.two-column .form-actions {
+  grid-column: 1 / -1;
 }
+
+/* =====================
+   ID APPLICABLE
+   ===================== */
+
+.id-applicable-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 8px;
+}
+
+.id-applicable-label {
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+/* =====================
+   FORM ACTIONS (CENTER)
+   ===================== */
 
 .form-actions {
   display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-top: 16px;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 32px;
 }
 
 .form-actions button {
-  padding: 10px 16px;
+  padding: 10px 20px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
@@ -53,33 +86,78 @@
   color: white;
 }
 
-.billing-cycle {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-}
-
-.error {
-  color: #dc2626;
-  font-size: 12px;
-  margin-top: 4px;
-}
-
 /* =====================
-   ID APPLICABLE INLINE FIX
+   FORM ROW SPACING FIX
    ===================== */
 
-.id-applicable-row {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  /* ✅ exact spacing */
-  margin-top: 8px;
+.form-row {
+  display: contents; /* keeps 2-column grid */
 }
 
-/* Force same color as other form labels */
-.id-applicable-label {
-  font-size: 14px;
-  color: var(--text-primary);
-  /* ✅ SAME token as all labels */
+/* restore vertical rhythm between rows */
+.edit-form.two-column > * {
+  margin-bottom: 14px;
 }
+
+
+/* =====================
+   CHECKBOX ALIGNMENT FIX
+   ===================== */
+
+.checkbox-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* same vertical spacing as inputs */
+  font-size: 14px;
+  color: #374151;
+}
+
+/* Label behaves like other labels */
+.checkbox-label {
+  font-size: 14px;
+  color: #374151;
+}
+
+/* This aligns checkbox with input start */
+.checkbox-input {
+  display: flex;
+  align-items: center;
+  height: 42px; /* SAME visual height as inputs */
+  padding-left: 10px; /* SAME left padding as inputs */
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+}
+
+/* Actual checkbox */
+.checkbox-input input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+
+/* =====================
+   LD INLINE FIELD
+   ===================== */
+
+.ld-inline-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;              /* space between label & checkbox */
+  height: 42px;           /* same visual height as inputs */
+  padding-left: 2px;      /* optical alignment with inputs */
+  font-size: 14px;
+  color: #374151;
+}
+
+.ld-inline-label {
+  white-space: nowrap;
+}
+
+/* checkbox size consistency */
+.ld-inline-field input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+

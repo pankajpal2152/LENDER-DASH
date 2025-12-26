@@ -37,7 +37,7 @@ const EMPTY_AGGREGATOR = {
 };
 
 export default function EditAggregator() {
-    const { id } = useParams(); // present only in edit
+    const { id } = useParams();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -74,9 +74,7 @@ export default function EditAggregator() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         console.log(isEdit ? "Updated Aggregator:" : "Created Aggregator:", formData);
-
         navigate("/aggregators");
     };
 
@@ -90,102 +88,62 @@ export default function EditAggregator() {
                         {isEdit ? "Edit Aggregator" : "Add Aggregator"}
                     </h2>
 
-                    <form className="edit-form" onSubmit={handleSubmit}>
-                        {/* ===== BASIC DETAILS ===== */}
+                    {/* ✅ TWO COLUMN FORM */}
+                    <form className="edit-form two-column" onSubmit={handleSubmit}>
                         <label>
-                            ID (UUID)
+                            ID
                             <input value={formData.id} disabled />
                         </label>
 
                         <label>
                             Aggregator Code
-                            <input
-                                name="aggregatorCode"
-                                value={formData.aggregatorCode}
-                                onChange={handleChange}
-                                required
-                            />
+                            <input name="aggregatorCode" value={formData.aggregatorCode} onChange={handleChange} />
                         </label>
 
                         <label>
                             Aggregator Name
-                            <input
-                                name="aggregatorName"
-                                value={formData.aggregatorName}
-                                onChange={handleChange}
-                                required
-                            />
+                            <input name="aggregatorName" value={formData.aggregatorName} onChange={handleChange} />
                         </label>
 
-                        {/* ===== CONTACT ===== */}
                         <label>
                             Contact Person Name
-                            <input
-                                name="contactPersonName"
-                                value={formData.contactPersonName}
-                                onChange={handleChange}
-                            />
+                            <input name="contactPersonName" value={formData.contactPersonName} onChange={handleChange} />
                         </label>
 
                         <label>
                             Contact Mobile
-                            <input
-                                name="contactMobile"
-                                value={formData.contactMobile}
-                                onChange={handleChange}
-                            />
+                            <input name="contactMobile" value={formData.contactMobile} onChange={handleChange} />
                         </label>
 
                         <label>
                             Contact Email
-                            <input
-                                name="contactEmail"
-                                value={formData.contactEmail}
-                                onChange={handleChange}
-                            />
+                            <input name="contactEmail" value={formData.contactEmail} onChange={handleChange} />
                         </label>
 
-                        {/* ===== ADDRESS ===== */}
                         <label>
                             Office Address
-                            <input
-                                name="officeAddress"
-                                value={formData.officeAddress}
-                                onChange={handleChange}
-                            />
+                            <input name="officeAddress" value={formData.officeAddress} onChange={handleChange} />
                         </label>
 
+                        <label>
+                            District
+                            <input name="district" value={formData.district} onChange={handleChange} />
+                        </label>
                         <label>
                             State
                             <input name="state" value={formData.state} onChange={handleChange} />
                         </label>
 
-                        <label>
-                            District
-                            <input
-                                name="district"
-                                value={formData.district}
-                                onChange={handleChange}
-                            />
-                        </label>
 
-                        {/* ===== SERVICE ===== */}
+
                         <label>
                             Service Coverage
-                            <input
-                                name="serviceCoverage"
-                                value={formData.serviceCoverage}
-                                onChange={handleChange}
-                            />
+                            <input name="serviceCoverage" value={formData.serviceCoverage} onChange={handleChange} />
                         </label>
 
                         <label>
                             Service Type
-                            <select
-                                name="serviceType"
-                                value={formData.serviceType}
-                                onChange={handleChange}
-                            >
+                            <select name="serviceType" value={formData.serviceType} onChange={handleChange}>
                                 <option value="">Select</option>
                                 <option value="PUBLIC">PUBLIC</option>
                                 <option value="PRIVATE">PRIVATE</option>
@@ -194,17 +152,13 @@ export default function EditAggregator() {
 
                         <label>
                             TAT Hours
-                            <input
-                                type="number"
-                                name="tatHours"
-                                value={formData.tatHours}
-                                onChange={handleChange}
-                            />
+                            <input type="number" name="tatHours" value={formData.tatHours} onChange={handleChange} />
                         </label>
 
-                        {/* ===== LD ===== */}
-                        <div className="id-applicable-row">
-                            <span className="id-applicable-label">LD Applicable</span>
+                        {/* ===== LD SECTION (LEFT + RIGHT COLUMN) ===== */}
+                        <div className="ld-inline-field">
+                            <span className="ld-inline-label">LD Applicable</span>
+
                             <input
                                 type="checkbox"
                                 name="ldApplicable"
@@ -212,7 +166,6 @@ export default function EditAggregator() {
                                 onChange={handleChange}
                             />
                         </div>
-
                         <label>
                             LD Percentage Cap
                             <input
@@ -224,106 +177,78 @@ export default function EditAggregator() {
                                 disabled={!formData.ldApplicable}
                             />
                         </label>
-
-                        {/* ===== BILLING ===== */}
                         <label>
-                            Billing Cycle
-                            <select
-                                name="billingCycle"
-                                value={formData.billingCycle}
+                            Billing Cycle From
+                            <input
+                                type="datetime-local"
+                                name="billing_from"
+                                value={formData.billingCycle.from}
                                 onChange={handleChange}
-                            >
-                                <option value="">Select</option>
-                                <option value="PUBLIC">PUBLIC</option>
-                                <option value="PRIVATE">PRIVATE</option>
-                            </select>
+                            />
                         </label>
+                        <div className="billing-cycle">
+                            <label>
+                                To
+                                <input
+                                    type="datetime-local"
+                                    name="billing_to"
+                                    value={formData.billingCycle.to}
+                                    onChange={handleChange}
+                                />
+                            </label>
+                        </div>
+                        <label>
+                            Contract Start Date
+                            <input type="datetime-local" name="contractStartDate" value={formData.contractStartDate} onChange={handleChange} />
+                        </label>
+
+                        <label>
+                            End Date
+                            <input type="datetime-local" name="contractEndDate" value={formData.contractEndDate} onChange={handleChange} />
+                        </label>
+
+
+
+
+
 
                         <label>
                             Payment Terms Days
-                            <input
-                                type="number"
-                                name="paymentTermsDays"
-                                value={formData.paymentTermsDays}
-                                onChange={handleChange}
-                            />
+                            <input type="number" name="paymentTermsDays" value={formData.paymentTermsDays} onChange={handleChange} />
                         </label>
 
-                        {/* ===== CONTRACT ===== */}
-                        <label>
-                            Contract Start Date
-                            <input
-                                type="datetime-local"
-                                name="contractStartDate"
-                                value={formData.contractStartDate}
-                                onChange={handleChange}
-                            />
-                        </label>
-
-                        <label>
-                            Contract End Date
-                            <input
-                                type="datetime-local"
-                                name="contractEndDate"
-                                value={formData.contractEndDate}
-                                onChange={handleChange}
-                            />
-                        </label>
-
-                        {/* ===== BANK ===== */}
                         <label>
                             Bank Name
-                            <input
-                                name="bankName"
-                                value={formData.bankName}
-                                onChange={handleChange}
-                            />
+                            <input name="bankName" value={formData.bankName} onChange={handleChange} />
                         </label>
+
+
+
+
 
                         <label>
                             Bank Account No
-                            <input
-                                name="bankAccountNo"
-                                value={formData.bankAccountNo}
-                                onChange={handleChange}
-                            />
+                            <input name="bankAccountNo" value={formData.bankAccountNo} onChange={handleChange} />
                         </label>
 
                         <label>
                             IFSC Code
-                            <input
-                                name="ifscCode"
-                                value={formData.ifscCode}
-                                onChange={handleChange}
-                            />
+                            <input name="ifscCode" value={formData.ifscCode} onChange={handleChange} />
                         </label>
 
                         <label>
                             GST Number
-                            <input
-                                name="gstNumber"
-                                value={formData.gstNumber}
-                                onChange={handleChange}
-                            />
+                            <input name="gstNumber" value={formData.gstNumber} onChange={handleChange} />
                         </label>
 
                         <label>
                             PAN Number
-                            <input
-                                name="panNumber"
-                                value={formData.panNumber}
-                                onChange={handleChange}
-                            />
+                            <input name="panNumber" value={formData.panNumber} onChange={handleChange} />
                         </label>
 
-                        {/* ===== STATUS ===== */}
                         <label>
                             Aggregator Status
-                            <select
-                                name="aggregatorStatus"
-                                value={formData.aggregatorStatus}
-                                onChange={handleChange}
-                            >
+                            <select name="aggregatorStatus" value={formData.aggregatorStatus} onChange={handleChange}>
                                 <option value="">Select</option>
                                 <option value="ACTIVE">ACTIVE</option>
                                 <option value="INACTIVE">INACTIVE</option>
@@ -332,45 +257,27 @@ export default function EditAggregator() {
 
                         <label>
                             Remarks
-                            <input
-                                name="remarks"
-                                value={formData.remarks}
-                                onChange={handleChange}
-                            />
+                            <input name="remarks" value={formData.remarks} onChange={handleChange} />
                         </label>
 
-                        {/* ===== AUDIT ===== */}
                         <label>
                             Created At
-                            <input
-                                type="datetime-local"
-                                name="createdAt"
-                                value={formData.createdAt}
-                                onChange={handleChange}
-                            />
+                            <input type="datetime-local" name="createdAt" value={formData.createdAt} onChange={handleChange} />
                         </label>
 
                         <label>
                             Updated At
-                            <input
-                                type="datetime-local"
-                                name="updatedAt"
-                                value={formData.updatedAt}
-                                onChange={handleChange}
-                            />
+                            <input type="datetime-local" name="updatedAt" value={formData.updatedAt} onChange={handleChange} />
                         </label>
 
+                        {/* FULL WIDTH – CENTERED */}
                         <div className="form-actions">
-                            <button type="button" onClick={() => navigate("/aggregators")}>
-                                Cancel
-                            </button>
-                            <button type="submit" className="primary">
-                                {isEdit ? "Update" : "Create"}
-                            </button>
+                            <button type="button" onClick={() => navigate("/aggregators")}>Cancel</button>
+                            <button type="submit" className="primary">{isEdit ? "Update" : "Create"}</button>
                         </div>
                     </form>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }

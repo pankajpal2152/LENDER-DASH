@@ -8,6 +8,9 @@ import AddLender from "./pages/AddLender";
 import EditAggregator from "./pages/EditAggregator";
 import EditLenderBranch from "./pages/EditLenderBranch";
 import ViewAggregator from "./pages/ViewAggregator";
+import AddAggregator from "./pages/AddAggregator";
+import AggregatorList from "./pages/AggregatorList";
+
 
 
 
@@ -56,7 +59,8 @@ export default function App() {
           <Route path="/lenders" element={<LenderMaster />} />
           <Route path="/lenders/add" element={<AddLender />} />
           <Route path="/lenders/edit/:id" element={<EditLender />} />
-          <Route path="/aggregators/add" element={<EditAggregator />} />
+          <Route path="/aggregators" element={<AggregatorList />} />
+          <Route path="/aggregators/add" element={<AddAggregator />} />
           <Route path="/aggregators/edit/:id" element={<EditAggregator />} />
           <Route path="/lender-branches/add" element={<EditLenderBranch />} />
           <Route path="/lender-branches/edit/:id" element={<EditLenderBranch />} />

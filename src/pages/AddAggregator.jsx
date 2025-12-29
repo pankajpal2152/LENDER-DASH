@@ -1,182 +1,246 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import LenderPageHeader from "../components/LenderPageHeader";
-import "./EditLender.css"; // reuse same spacing & card styles
+import "./EditLender.css";
 
 /* =====================
-   DUMMY FIELD ENGINEERS
+   DEFAULT MODEL – AGGREGATOR
    ===================== */
-const ALL_FIELD_ENGINEERS = [
-    { id: 1, name: "Rahul Das", mobile: "9876543210", region: "West Bengal", active: true },
-    { id: 2, name: "Amit Singh", mobile: "9123456780", region: "Bihar", active: true },
-    { id: 3, name: "Sourav Pal", mobile: "9988776655", region: "Odisha", active: false },
-    { id: 4, name: "Ravi Kumar", mobile: "9090909090", region: "Jharkhand", active: true },
-];
+const EMPTY_AGGREGATOR = {
+  id: "",
+  aggregatorCode: "",
+  aggregatorName: "",
+  contactPersonName: "",
+  contactMobile: "",
+  contactEmail: "",
+  officeAddress: "",
+  state: "",
+  district: "",
+  serviceCoverage: "",
+  serviceType: "",
+  tatHours: "",
+  ldApplicable: false,
+  ldPercentageCap: "",
+  billingCycle: "",
+  paymentTermsDays: "",
+  contractStartDate: "",
+  contractEndDate: "",
+  bankName: "",
+  bankAccountNo: "",
+  ifscCode: "",
+  gstNumber: "",
+  panNumber: "",
+  aggregatorStatus: "",
+  remarks: "",
+  createdAt: "",
+  updatedAt: "",
+};
 
-export default function ViewAggregator() {
-    const { id } = useParams();
-    const navigate = useNavigate();
-    const location = useLocation();
+export default function AddAggregator() {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState(EMPTY_AGGREGATOR);
 
-    const [aggregator, setAggregator] = useState(location.state || {});
-    const [mappedEngineers, setMappedEngineers] = useState([]);
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
 
-    /* =====================
-       LOAD MAPPED ENGINEERS
-       ===================== */
-    useEffect(() => {
-        // 🔜 Later replace with API
-        setMappedEngineers([ALL_FIELD_ENGINEERS[0], ALL_FIELD_ENGINEERS[1]]);
-    }, []);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Created Aggregator:", formData);
+    navigate("/aggregators");
+  };
 
-    /* =====================
-       MAP / UNMAP HANDLERS
-       ===================== */
-    const handleMap = (engineer) => {
-        if (mappedEngineers.find((e) => e.id === engineer.id)) return;
-        setMappedEngineers((prev) => [...prev, engineer]);
-    };
+  return (
+    <div className="lender-form-page">
+      <LenderPageHeader />
 
-    const handleUnmap = (id) => {
-        setMappedEngineers((prev) => prev.filter((e) => e.id !== id));
-    };
+      <div className="edit-lender-page">
+        <div className="card edit-lender-card full-width">
+          <h2 className="edit-lender-title">Add Aggregator</h2>
 
-    return (
-        <div className="lender-form-page">
-            <LenderPageHeader />
+          {/* SAME STRUCTURE AS EDIT */}
+          <form className="edit-form two-column" onSubmit={handleSubmit}>
+            {/* ID – EDITABLE */}
+            <label>
+              ID
+              <input
+                name="id"
+                value={formData.id}
+                onChange={handleChange}
+                placeholder="Enter UUID"
+                required
+              />
+            </label>
 
-            {/* =====================
-         AGGREGATOR DETAILS
-         ===================== */}
-            <div className="edit-lender-page">
-                <div className="card edit-lender-card full-width">
-                    <h2 className="edit-lender-title">Aggregator Details</h2>
+            <label>
+              Aggregator Code
+              <input name="aggregatorCode" value={formData.aggregatorCode} onChange={handleChange} />
+            </label>
 
-                    <div className="edit-form">
-                        <label>
-                            Aggregator ID
-                            <input value={id} disabled />
-                        </label>
+            <label>
+              Aggregator Name
+              <input name="aggregatorName" value={formData.aggregatorName} onChange={handleChange} />
+            </label>
 
-                        <label>
-                            Aggregator Name
-                            <input value={aggregator.aggregatorName || "—"} disabled />
-                        </label>
+            <label>
+              Contact Person Name
+              <input name="contactPersonName" value={formData.contactPersonName} onChange={handleChange} />
+            </label>
 
-                        <label>
-                            Aggregator Code
-                            <input value={aggregator.aggregatorCode || "—"} disabled />
-                        </label>
+            <label>
+              Contact Mobile
+              <input name="contactMobile" value={formData.contactMobile} onChange={handleChange} />
+            </label>
 
-                        <label>
-                            State
-                            <input value={aggregator.state || "—"} disabled />
-                        </label>
+            <label>
+              Contact Email
+              <input name="contactEmail" value={formData.contactEmail} onChange={handleChange} />
+            </label>
 
-                        <label>
-                            District
-                            <input value={aggregator.district || "—"} disabled />
-                        </label>
+            <label>
+              Office Address
+              <input name="officeAddress" value={formData.officeAddress} onChange={handleChange} />
+            </label>
 
-                        <label>
-                            Status
-                            <input value={aggregator.aggregatorStatus || "—"} disabled />
-                        </label>
-                    </div>
-                </div>
+            <label>
+              District
+              <input name="district" value={formData.district} onChange={handleChange} />
+            </label>
+
+            <label>
+              State
+              <input name="state" value={formData.state} onChange={handleChange} />
+            </label>
+
+            <label>
+              Service Coverage
+              <input name="serviceCoverage" value={formData.serviceCoverage} onChange={handleChange} />
+            </label>
+
+            <label>
+              Service Type
+              <select name="serviceType" value={formData.serviceType} onChange={handleChange}>
+                <option value="">Select</option>
+                <option value="PUBLIC">PUBLIC</option>
+                <option value="PRIVATE">PRIVATE</option>
+              </select>
+            </label>
+
+            <label>
+              TAT Hours
+              <input type="number" name="tatHours" value={formData.tatHours} onChange={handleChange} />
+            </label>
+
+            <div className="ld-inline-field">
+              <span className="ld-inline-label">LD Applicable</span>
+              <input
+                type="checkbox"
+                name="ldApplicable"
+                checked={formData.ldApplicable}
+                onChange={handleChange}
+              />
             </div>
 
-            {/* =====================
-         FIELD ENGINEER MAPPING
-         ===================== */}
-            <div className="edit-lender-page">
-                <div className="card edit-lender-card full-width">
-                    <h2 className="edit-lender-title">Mapped Field Engineers</h2>
+            <label>
+              LD Percentage Cap
+              <input
+                type="number"
+                step="0.01"
+                name="ldPercentageCap"
+                value={formData.ldPercentageCap}
+                onChange={handleChange}
+                disabled={!formData.ldApplicable}
+              />
+            </label>
 
-                    <table style={{ width: "100%", borderCollapse: "collapse" }}>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Mobile</th>
-                                <th>Region</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
+            <label>
+              Billing Cycle
+              <select name="billingCycle" value={formData.billingCycle} onChange={handleChange}>
+                <option value="">Select</option>
+                <option value="PUBLIC">PUBLIC</option>
+                <option value="PRIVATE">PRIVATE</option>
+              </select>
+            </label>
 
-                        <tbody>
-                            {mappedEngineers.length === 0 && (
-                                <tr>
-                                    <td colSpan="5" style={{ textAlign: "center", padding: "16px" }}>
-                                        No Field Engineers mapped
-                                    </td>
-                                </tr>
-                            )}
+            <label>
+              Payment Terms Days
+              <input type="number" name="paymentTermsDays" value={formData.paymentTermsDays} onChange={handleChange} />
+            </label>
 
-                            {mappedEngineers.map((fe) => (
-                                <tr key={fe.id}>
-                                    <td>{fe.name}</td>
-                                    <td>{fe.mobile}</td>
-                                    <td>{fe.region}</td>
-                                    <td>{fe.active ? "Active" : "Inactive"}</td>
-                                    <td>
-                                        <button
-                                            className="icon-btn"
-                                            onClick={() => handleUnmap(fe.id)}
-                                        >
-                                            Remove
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+            <label>
+              Contract Start Date
+              <input type="datetime-local" name="contractStartDate" value={formData.contractStartDate} onChange={handleChange} />
+            </label>
+
+            <label>
+              Contract End Date
+              <input type="datetime-local" name="contractEndDate" value={formData.contractEndDate} onChange={handleChange} />
+            </label>
+
+            <label>
+              Bank Name
+              <input name="bankName" value={formData.bankName} onChange={handleChange} />
+            </label>
+
+            <label>
+              Bank Account No
+              <input name="bankAccountNo" value={formData.bankAccountNo} onChange={handleChange} />
+            </label>
+
+            <label>
+              IFSC Code
+              <input name="ifscCode" value={formData.ifscCode} onChange={handleChange} />
+            </label>
+
+            <label>
+              GST Number
+              <input name="gstNumber" value={formData.gstNumber} onChange={handleChange} />
+            </label>
+
+            <label>
+              PAN Number
+              <input name="panNumber" value={formData.panNumber} onChange={handleChange} />
+            </label>
+
+            <label>
+              Aggregator Status
+              <select name="aggregatorStatus" value={formData.aggregatorStatus} onChange={handleChange}>
+                <option value="">Select</option>
+                <option value="ACTIVE">ACTIVE</option>
+                <option value="INACTIVE">INACTIVE</option>
+              </select>
+            </label>
+
+            <label>
+              Remarks
+              <input name="remarks" value={formData.remarks} onChange={handleChange} />
+            </label>
+
+            <label>
+              Created At
+              <input type="datetime-local" name="createdAt" value={formData.createdAt} onChange={handleChange} />
+            </label>
+
+            <label>
+              Updated At
+              <input type="datetime-local" name="updatedAt" value={formData.updatedAt} onChange={handleChange} />
+            </label>
+
+            <div className="form-actions">
+              <button type="button" onClick={() => navigate("/aggregators")}>
+                Cancel
+              </button>
+              <button type="submit" className="primary">
+                Create
+              </button>
             </div>
-
-            {/* =====================
-         MAP NEW FIELD ENGINEER
-         ===================== */}
-            <div className="edit-lender-page">
-                <div className="card edit-lender-card full-width">
-                    <h2 className="edit-lender-title">Map Field Engineer</h2>
-
-                    <table style={{ width: "100%", borderCollapse: "collapse" }}>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Mobile</th>
-                                <th>Region</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            {ALL_FIELD_ENGINEERS.map((fe) => (
-                                <tr key={fe.id}>
-                                    <td>{fe.name}</td>
-                                    <td>{fe.mobile}</td>
-                                    <td>{fe.region}</td>
-                                    <td>
-                                        <button
-                                            className="icon-btn"
-                                            onClick={() => handleMap(fe)}
-                                        >
-                                            Map
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-
-                    <div className="form-actions">
-                        <button type="button" onClick={() => navigate("/aggregators")}>
-                            Back
-                        </button>
-                    </div>
-                </div>
-            </div>
+          </form>
         </div>
-    );
+      </div>
+    </div>
+  );
 }

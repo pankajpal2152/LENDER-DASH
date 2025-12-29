@@ -134,8 +134,6 @@ export default function EditAggregator() {
                             <input name="state" value={formData.state} onChange={handleChange} />
                         </label>
 
-
-
                         <label>
                             Service Coverage
                             <input name="serviceCoverage" value={formData.serviceCoverage} onChange={handleChange} />
@@ -206,12 +204,6 @@ export default function EditAggregator() {
                             End Date
                             <input type="datetime-local" name="contractEndDate" value={formData.contractEndDate} onChange={handleChange} />
                         </label>
-
-
-
-
-
-
                         <label>
                             Payment Terms Days
                             <input type="number" name="paymentTermsDays" value={formData.paymentTermsDays} onChange={handleChange} />
@@ -221,10 +213,6 @@ export default function EditAggregator() {
                             Bank Name
                             <input name="bankName" value={formData.bankName} onChange={handleChange} />
                         </label>
-
-
-
-
 
                         <label>
                             Bank Account No

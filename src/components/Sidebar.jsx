@@ -1,5 +1,13 @@
 import { NavLink } from "react-router-dom";
-import { Home, Users, LogOut } from "lucide-react";
+import {
+  Home,
+  Users,
+  LogOut,
+  Layers,        // Aggregator
+  Building2,     // Lender Branch
+  Wrench,        // Field Engineer
+  Warehouse      // Warehouse
+} from "lucide-react";
 import "./Sidebar.css";
 
 // Brand assets
@@ -31,7 +39,7 @@ export default function Sidebar({ isOpen, isMobile, closeSidebar }) {
 
       {/* ===== NAV ===== */}
       <nav className="nav">
-        {/* Dashboard → Home */}
+        {/* Dashboard */}
         <NavLink
           to="/"
           end
@@ -46,7 +54,7 @@ export default function Sidebar({ isOpen, isMobile, closeSidebar }) {
           {isOpen && <span className="nav-label">Dashboard</span>}
         </NavLink>
 
-        {/* Lender → Lender Master */}
+        {/* Lender */}
         <NavLink
           to="/lenders"
           className={({ isActive }) =>
@@ -58,6 +66,62 @@ export default function Sidebar({ isOpen, isMobile, closeSidebar }) {
             <Users size={20} strokeWidth={1.8} />
           </span>
           {isOpen && <span className="nav-label">Lender</span>}
+        </NavLink>
+
+        {/* Aggregator */}
+        <NavLink
+          to="/aggregators"
+          className={({ isActive }) =>
+            `nav-item ${isActive ? "active" : ""}`
+          }
+          onClick={handleNavClick}
+        >
+          <span className="nav-icon">
+            <Layers size={20} strokeWidth={1.8} />
+          </span>
+          {isOpen && <span className="nav-label">Aggregator</span>}
+        </NavLink>
+
+        {/* Field Engineer */}
+        <NavLink
+          to="/engineers"
+          className={({ isActive }) =>
+            `nav-item ${isActive ? "active" : ""}`
+          }
+          onClick={handleNavClick}
+        >
+          <span className="nav-icon">
+            <Wrench size={20} strokeWidth={1.8} />
+          </span>
+          {isOpen && <span className="nav-label">Field Engineer</span>}
+        </NavLink>
+
+        {/* Warehouse */}
+        <NavLink
+          to="/warehouse"
+          className={({ isActive }) =>
+            `nav-item ${isActive ? "active" : ""}`
+          }
+          onClick={handleNavClick}
+        >
+          <span className="nav-icon">
+            <Warehouse size={20} strokeWidth={1.8} />
+          </span>
+          {isOpen && <span className="nav-label">Warehouse</span>}
+        </NavLink>
+
+        {/* Lender Branch */}
+        <NavLink
+          to="/lender-branches"
+          className={({ isActive }) =>
+            `nav-item ${isActive ? "active" : ""}`
+          }
+          onClick={handleNavClick}
+        >
+          <span className="nav-icon">
+            <Building2 size={20} strokeWidth={1.8} />
+          </span>
+          {isOpen && <span className="nav-label">Lender Branch</span>}
         </NavLink>
       </nav>
 

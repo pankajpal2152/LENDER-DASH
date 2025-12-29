@@ -17,7 +17,7 @@ export default function WarehouseHeader() {
               Home
             </Link>
             <span className="breadcrumb-separator">•</span>
-            <span>Warehouse List</span>
+            <span>Warehouse</span>
           </p>
         </div>
 

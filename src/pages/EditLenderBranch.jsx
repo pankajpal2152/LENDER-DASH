@@ -76,7 +76,11 @@ export default function EditLenderBranch() {
 
     return (
         <div className="lender-form-page">
-            <LenderPageHeader />
+            {/* ✅ DYNAMIC PAGE HEADER */}
+            <LenderPageHeader
+                title="Lender Branch"
+                breadcrumbLabel="Lender Branch"
+            />
 
             <div className="edit-lender-page">
                 <div className="card edit-lender-card full-width">
@@ -104,17 +108,29 @@ export default function EditLenderBranch() {
 
                         <label>
                             Branch Code
-                            <input name="branchCode" value={formData.branchCode} onChange={handleChange} />
+                            <input
+                                name="branchCode"
+                                value={formData.branchCode}
+                                onChange={handleChange}
+                            />
                         </label>
 
                         <label>
                             Branch Name
-                            <input name="branchName" value={formData.branchName} onChange={handleChange} />
+                            <input
+                                name="branchName"
+                                value={formData.branchName}
+                                onChange={handleChange}
+                            />
                         </label>
 
                         <label>
                             Branch Type
-                            <select name="branchType" value={formData.branchType} onChange={handleChange}>
+                            <select
+                                name="branchType"
+                                value={formData.branchType}
+                                onChange={handleChange}
+                            >
                                 <option value="">Select</option>
                                 <option value="PUBLIC">PUBLIC</option>
                                 <option value="PRIVATE">PRIVATE</option>
@@ -123,47 +139,85 @@ export default function EditLenderBranch() {
 
                         <label>
                             Contact Person Name
-                            <input name="contactPersonName" value={formData.contactPersonName} onChange={handleChange} />
+                            <input
+                                name="contactPersonName"
+                                value={formData.contactPersonName}
+                                onChange={handleChange}
+                            />
                         </label>
 
                         <label>
                             Contact Mobile
-                            <input name="contactMobile" value={formData.contactMobile} onChange={handleChange} />
+                            <input
+                                name="contactMobile"
+                                value={formData.contactMobile}
+                                onChange={handleChange}
+                            />
                         </label>
 
                         <label>
                             Contact Email
-                            <input name="contactEmail" value={formData.contactEmail} onChange={handleChange} />
+                            <input
+                                name="contactEmail"
+                                value={formData.contactEmail}
+                                onChange={handleChange}
+                            />
                         </label>
 
                         <label>
                             Address
-                            <input name="address" value={formData.address} onChange={handleChange} />
+                            <input
+                                name="address"
+                                value={formData.address}
+                                onChange={handleChange}
+                            />
                         </label>
 
                         <label>
                             State
-                            <input name="state" value={formData.state} onChange={handleChange} />
+                            <input
+                                name="state"
+                                value={formData.state}
+                                onChange={handleChange}
+                            />
                         </label>
 
                         <label>
                             District
-                            <input name="district" value={formData.district} onChange={handleChange} />
+                            <input
+                                name="district"
+                                value={formData.district}
+                                onChange={handleChange}
+                            />
                         </label>
 
                         <label>
                             Pincode
-                            <input name="pincode" value={formData.pincode} onChange={handleChange} />
+                            <input
+                                name="pincode"
+                                value={formData.pincode}
+                                onChange={handleChange}
+                            />
                         </label>
 
                         <label>
                             Latitude
-                            <input type="number" name="latitude" value={formData.latitude} onChange={handleChange} />
+                            <input
+                                type="number"
+                                name="latitude"
+                                value={formData.latitude}
+                                onChange={handleChange}
+                            />
                         </label>
 
                         <label>
                             Longitude
-                            <input type="number" name="longitude" value={formData.longitude} onChange={handleChange} />
+                            <input
+                                type="number"
+                                name="longitude"
+                                value={formData.longitude}
+                                onChange={handleChange}
+                            />
                         </label>
 
                         <label>
@@ -176,7 +230,7 @@ export default function EditLenderBranch() {
                             />
                         </label>
 
-                        {/* ✅ INLINE BILLING APPLICABLE */}
+                        {/* ✅ INLINE BILLING */}
                         <div className="ld-inline-field">
                             <span className="ld-inline-label">Billing Applicable</span>
                             <input
@@ -189,7 +243,11 @@ export default function EditLenderBranch() {
 
                         <label>
                             Status
-                            <select name="status" value={formData.status} onChange={handleChange}>
+                            <select
+                                name="status"
+                                value={formData.status}
+                                onChange={handleChange}
+                            >
                                 <option value="">Select</option>
                                 <option value="ACTIVE">ACTIVE</option>
                                 <option value="INACTIVE">INACTIVE</option>
@@ -198,22 +256,39 @@ export default function EditLenderBranch() {
 
                         <label>
                             Remarks
-                            <input name="remarks" value={formData.remarks} onChange={handleChange} />
+                            <input
+                                name="remarks"
+                                value={formData.remarks}
+                                onChange={handleChange}
+                            />
                         </label>
 
                         <label>
                             Created At
-                            <input type="datetime-local" name="createdAt" value={formData.createdAt} onChange={handleChange} />
+                            <input
+                                type="datetime-local"
+                                name="createdAt"
+                                value={formData.createdAt}
+                                onChange={handleChange}
+                            />
                         </label>
 
                         <label>
                             Updated At
-                            <input type="datetime-local" name="updatedAt" value={formData.updatedAt} onChange={handleChange} />
+                            <input
+                                type="datetime-local"
+                                name="updatedAt"
+                                value={formData.updatedAt}
+                                onChange={handleChange}
+                            />
                         </label>
 
                         {/* ✅ CENTERED ACTIONS */}
                         <div className="form-actions">
-                            <button type="button" onClick={() => navigate("/lender-branches")}>
+                            <button
+                                type="button"
+                                onClick={() => navigate("/lender-branches")}
+                            >
                                 Cancel
                             </button>
                             <button type="submit" className="primary">

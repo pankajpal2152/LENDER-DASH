@@ -1,18 +1,16 @@
 import { useState, useMemo } from "react";
-import { useNavigate } from "react-router-dom"; 
-// 🔴 ADDED: useNavigate is used to move to Edit Form page
+import { useNavigate } from "react-router-dom";
 
-import { Pencil, ArrowUp, ArrowDown } from "lucide-react";
+import { Pencil, Eye, ArrowUp, ArrowDown } from "lucide-react";
 import "./WarehouseTableCard.css";
 
 export default function WarehouseTableCard() {
-  const navigate = useNavigate(); 
-  // 🔴 ADDED: navigate helps us change page programmatically
+  const navigate = useNavigate();
 
   /* =====================
-     DUMMY DATA
+     DUMMY DATA (NOW MUTABLE)
      ===================== */
-  const [warehouses] = useState([
+  const [warehouses, setWarehouses] = useState([
     {
       id: 1,
       warehouseCode: "WH001",
@@ -41,6 +39,17 @@ export default function WarehouseTableCard() {
       status: true,
     },
   ]);
+
+  /* =====================
+     STATUS TOGGLE (FIX)
+     ===================== */
+  const handleToggle = (id) => {
+    setWarehouses((prev) =>
+      prev.map((wh) =>
+        wh.id === id ? { ...wh, status: !wh.status } : wh
+      )
+    );
+  };
 
   /* =====================
      SORTING
@@ -132,24 +141,38 @@ export default function WarehouseTableCard() {
                 <td>{wh.state}</td>
                 <td>{wh.district}</td>
 
+                {/* ✅ WORKING TOGGLE */}
                 <td>
                   <label className="switch">
-                    <input type="checkbox" checked={wh.status} readOnly />
+                    <input
+                      type="checkbox"
+                      checked={wh.status}
+                      onChange={() => handleToggle(wh.id)}
+                    />
                     <span className="slider" />
                   </label>
                 </td>
 
-                <td>
-                  {/* 🔴 THIS IS THE ONLY EDIT CHANGE */}
-                  {/* When clicking pencil icon:
-                      1. Navigate to edit page
-                      2. Pass selected warehouse data (wh)
-                  */}
+                {/* ACTIONS */}
+                <td style={{ display: "flex", gap: "6px" }}>
+                  {/* VIEW */}
+                  <button
+                    className="icon-btn"
+                    onClick={() =>
+                      navigate(`/warehouse/view/${wh.id}`, {
+                        state: wh,
+                      })
+                    }
+                  >
+                    <Eye size={16} />
+                  </button>
+
+                  {/* EDIT */}
                   <button
                     className="icon-btn"
                     onClick={() =>
                       navigate(`/warehouse/edit/${wh.id}`, {
-                        state: wh, // 🔴 sending full warehouse object to form
+                        state: wh,
                       })
                     }
                   >
@@ -161,7 +184,7 @@ export default function WarehouseTableCard() {
           </tbody>
         </table>
 
-        {/* Pagination */}
+        {/* PAGINATION */}
         <div className="pagination">
           <button
             disabled={currentPage === 1}

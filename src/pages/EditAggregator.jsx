@@ -80,7 +80,11 @@ export default function EditAggregator() {
 
     return (
         <div className="lender-form-page">
-            <LenderPageHeader />
+            {/* ✅ FIX: CORRECT HEADER + BREADCRUMB */}
+            <LenderPageHeader
+                title="Aggregator Master"
+                breadcrumbLabel="Aggregator"
+            />
 
             <div className="edit-lender-page">
                 <div className="card edit-lender-card full-width">
@@ -129,6 +133,7 @@ export default function EditAggregator() {
                             District
                             <input name="district" value={formData.district} onChange={handleChange} />
                         </label>
+
                         <label>
                             State
                             <input name="state" value={formData.state} onChange={handleChange} />
@@ -153,10 +158,8 @@ export default function EditAggregator() {
                             <input type="number" name="tatHours" value={formData.tatHours} onChange={handleChange} />
                         </label>
 
-                        {/* ===== LD SECTION (LEFT + RIGHT COLUMN) ===== */}
                         <div className="ld-inline-field">
                             <span className="ld-inline-label">LD Applicable</span>
-
                             <input
                                 type="checkbox"
                                 name="ldApplicable"
@@ -164,6 +167,7 @@ export default function EditAggregator() {
                                 onChange={handleChange}
                             />
                         </div>
+
                         <label>
                             LD Percentage Cap
                             <input
@@ -175,6 +179,7 @@ export default function EditAggregator() {
                                 disabled={!formData.ldApplicable}
                             />
                         </label>
+
                         <label>
                             Billing Cycle From
                             <input
@@ -184,6 +189,7 @@ export default function EditAggregator() {
                                 onChange={handleChange}
                             />
                         </label>
+
                         <div className="billing-cycle">
                             <label>
                                 To
@@ -195,6 +201,7 @@ export default function EditAggregator() {
                                 />
                             </label>
                         </div>
+
                         <label>
                             Contract Start Date
                             <input type="datetime-local" name="contractStartDate" value={formData.contractStartDate} onChange={handleChange} />
@@ -204,6 +211,7 @@ export default function EditAggregator() {
                             End Date
                             <input type="datetime-local" name="contractEndDate" value={formData.contractEndDate} onChange={handleChange} />
                         </label>
+
                         <label>
                             Payment Terms Days
                             <input type="number" name="paymentTermsDays" value={formData.paymentTermsDays} onChange={handleChange} />
@@ -258,14 +266,17 @@ export default function EditAggregator() {
                             <input type="datetime-local" name="updatedAt" value={formData.updatedAt} onChange={handleChange} />
                         </label>
 
-                        {/* FULL WIDTH – CENTERED */}
                         <div className="form-actions">
-                            <button type="button" onClick={() => navigate("/aggregators")}>Cancel</button>
-                            <button type="submit" className="primary">{isEdit ? "Update" : "Create"}</button>
+                            <button type="button" onClick={() => navigate("/aggregators")}>
+                                Cancel
+                            </button>
+                            <button type="submit" className="primary">
+                                {isEdit ? "Update" : "Create"}
+                            </button>
                         </div>
                     </form>
                 </div>
-            </div >
-        </div >
+            </div>
+        </div>
     );
 }

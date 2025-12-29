@@ -1,15 +1,15 @@
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { Pencil, ArrowUp, ArrowDown } from "lucide-react";
+import { Pencil, Eye, ArrowUp, ArrowDown } from "lucide-react";
 import "./FieldEngineerTableCard.css";
 
 export default function FieldEngineerTableCard() {
   const navigate = useNavigate();
 
   /* =====================
-     DUMMY DATA
+     DUMMY DATA (NOW MUTABLE)
      ===================== */
-  const [engineers] = useState([
+  const [engineers, setEngineers] = useState([
     {
       id: 1,
       engineerCode: "FE001",
@@ -61,6 +61,17 @@ export default function FieldEngineerTableCard() {
       status: false,
     },
   ]);
+
+  /* =====================
+     STATUS TOGGLE (FIXED)
+     ===================== */
+  const handleToggle = (id) => {
+    setEngineers((prev) =>
+      prev.map((eng) =>
+        eng.id === id ? { ...eng, status: !eng.status } : eng
+      )
+    );
+  };
 
   /* =====================
      SORTING STATE
@@ -161,16 +172,33 @@ export default function FieldEngineerTableCard() {
                 <td>{eng.employmentType}</td>
                 <td>{eng.state}</td>
 
-                {/* Status Toggle */}
+                {/* ✅ WORKING STATUS TOGGLE */}
                 <td>
                   <label className="switch">
-                    <input type="checkbox" checked={eng.status} readOnly />
+                    <input
+                      type="checkbox"
+                      checked={eng.status}
+                      onChange={() => handleToggle(eng.id)}
+                    />
                     <span className="slider" />
                   </label>
                 </td>
 
-                {/* Edit */}
+                {/* ACTIONS: VIEW + EDIT */}
                 <td>
+                  {/* VIEW */}
+                  <button
+                    className="icon-btn"
+                    onClick={() =>
+                      navigate(`/engineers/view/${eng.id}`, {
+                        state: eng,
+                      })
+                    }
+                  >
+                    <Eye size={16} />
+                  </button>
+
+                  {/* EDIT */}
                   <button
                     className="icon-btn"
                     onClick={() =>

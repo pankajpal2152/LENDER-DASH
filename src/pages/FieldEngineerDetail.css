@@ -1,14 +1,19 @@
-.field-engineer-detail-container {
-  max-width: 1100px;
-  margin: auto;
+/* ===== PAGE WRAPPER ===== */
+.field-engineer-detail-container,
+.fe-detail-wrapper{
+  max-width: 100%;
+  margin: 35px 100px; /* ✅ 35px top, 100px left & right */
 }
 
+/* ===== HEADER ===== */
 .header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 16px;
+  align-items: center;
+  margin-bottom: 20px; /* ✅ space below header */
 }
 
+/* ===== STATUS BADGE ===== */
 .status {
   padding: 4px 10px;
   border-radius: 12px;
@@ -20,33 +25,41 @@
   color: #1a7f37;
 }
 
+/* ===== CARD GRID ===== */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  gap: 20px; /* ✅ EXACT 20px gap between all cards */
+  margin-bottom: 20px; /* ✅ spacing after grid */
 }
 
+/* ===== CARD ===== */
 .card {
-  background: #fff;
+  background: #ffffff;
   padding: 16px;
   border-radius: 8px;
+  margin-bottom: 20px; /* ✅ spacing when cards stack vertically */
 }
 
+/* Full-width card */
 .card.full {
   grid-column: span 2;
 }
 
+/* ===== SKILL TABLE ===== */
 .skill-table {
   width: 100%;
+  border-collapse: collapse;
 }
 
 .skill-table th,
 .skill-table td {
   border-bottom: 1px solid #eee;
-  width: 50%;
+  padding: 10px;
   text-align: center;
 }
 
+/* ===== ACTIONS ===== */
 .actions {
   display: flex;
   justify-content: flex-end;
@@ -63,4 +76,19 @@
 
 .actions .secondary {
   background: #f1f5f9;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .field-engineer-detail-container {
+    margin: 20px;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card.full {
+    grid-column: span 1;
+  }
 }

@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { Pencil, ArrowUp, ArrowDown } from "lucide-react";
+import { Pencil, Eye, ArrowUp, ArrowDown } from "lucide-react";
 import "./LenderTableCard.css";
 
 export default function LenderTableCard() {
@@ -23,7 +23,7 @@ export default function LenderTableCard() {
   ]);
 
   /* =====================
-     TOGGLE HANDLER (FIX)
+     TOGGLE HANDLER
      ===================== */
   const handleToggle = (id) => {
     setLenders((prev) =>
@@ -140,7 +140,7 @@ export default function LenderTableCard() {
                 <td>{lender.type}</td>
                 <td>{lender.region}</td>
 
-                {/* ✅ WORKING TOGGLE */}
+                {/* STATUS TOGGLE */}
                 <td>
                   <label className="switch">
                     <input
@@ -152,8 +152,21 @@ export default function LenderTableCard() {
                   </label>
                 </td>
 
-                {/* Edit */}
+                {/* ACTIONS: VIEW + EDIT */}
                 <td>
+                  {/* VIEW */}
+                  <button
+                    className="icon-btn"
+                    onClick={() =>
+                      navigate(`/lenders/view/${lender.id}`, {
+                        state: lender,
+                      })
+                    }
+                  >
+                    <Eye size={16} />
+                  </button>
+
+                  {/* EDIT */}
                   <button
                     className="icon-btn"
                     onClick={() =>

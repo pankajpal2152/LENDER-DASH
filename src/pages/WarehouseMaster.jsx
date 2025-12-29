@@ -1,6 +1,6 @@
-import WarehouseHeader from "../component/WarehouseHeader";
-import WarehouseToolbar from "../component/WarehouseToolbar";
-import WarehouseTableCard from "./WarehouseTableCard";
+import WarehouseHeader from "../components/WarehouseHeader";
+import WarehouseToolbar from "../components/WarehouseToolbar";
+import WarehouseTableCard from "../components/WarehouseTableCard";
 import "./WarehouseMaster.css";
 
 export default function WarehouseMaster() {

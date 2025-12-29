@@ -56,7 +56,11 @@ export default function AddAggregator() {
 
   return (
     <div className="lender-form-page">
-      <LenderPageHeader />
+      {/* ✅ FIX: SAME HEADER AS AGGREGATOR MASTER */}
+      <LenderPageHeader
+        title="Aggregator Master"
+        breadcrumbLabel="Aggregator"
+      />
 
       <div className="edit-lender-page">
         <div className="card edit-lender-card full-width">

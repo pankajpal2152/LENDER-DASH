@@ -43,11 +43,15 @@ export default function ViewAggregator() {
 
     return (
         <div className="lender-form-page">
-            <LenderPageHeader />
+            {/* ✅ FIX: BREADCRUMB = Home > Aggregator > View */}
+            <LenderPageHeader
+                title="Aggregator Master"
+                breadcrumbLabel="Aggregator > View"
+            />
 
             {/* =====================
-         AGGREGATOR DETAILS
-         ===================== */}
+               AGGREGATOR DETAILS
+               ===================== */}
             <div className="edit-lender-page">
                 <div className="card edit-lender-card full-width">
                     <h2 className="edit-lender-title">Aggregator Details</h2>
@@ -87,8 +91,8 @@ export default function ViewAggregator() {
             </div>
 
             {/* =====================
-         FIELD ENGINEER MAPPING
-         ===================== */}
+               FIELD ENGINEER MAPPING
+               ===================== */}
             <div className="edit-lender-page">
                 <div className="card edit-lender-card full-width">
                     <h2 className="edit-lender-title">Mapped Field Engineers</h2>
@@ -135,8 +139,8 @@ export default function ViewAggregator() {
             </div>
 
             {/* =====================
-         MAP NEW FIELD ENGINEER
-         ===================== */}
+               MAP NEW FIELD ENGINEER
+               ===================== */}
             <div className="edit-lender-page">
                 <div className="card edit-lender-card full-width">
                     <h2 className="edit-lender-title">Map Field Engineer</h2>

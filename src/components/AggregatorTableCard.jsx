@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Pencil, Eye, ArrowUp, ArrowDown } from "lucide-react";
 import "../components/LenderTable.css"; // ✅ reuse same CSS
 
+
 export default function AggregatorTableCard() {
     const navigate = useNavigate();
 

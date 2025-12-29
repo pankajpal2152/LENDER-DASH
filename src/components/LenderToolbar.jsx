@@ -1,7 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import "./LenderToolbar.css";
 
-export default function LenderToolbar() {
+export default function LenderToolbar({
+  searchPlaceholder = "Search here",
+  addButtonLabel = "Add More",
+  addRoute = "/lenders/add",
+}) {
   const navigate = useNavigate();
 
   return (
@@ -13,15 +17,15 @@ export default function LenderToolbar() {
             src="https://img.icons8.com/ios/50/search--v1.png"
             alt="search"
           />
-          <input placeholder="Search here" />
+          <input placeholder={searchPlaceholder} />
         </div>
 
-        {/* Add More */}
+        {/* Add Button */}
         <button
           className="add-more-btn"
-          onClick={() => navigate("/lenders/add")}
+          onClick={() => navigate(addRoute)}
         >
-          + Add More
+          + {addButtonLabel}
         </button>
       </div>
     </div>

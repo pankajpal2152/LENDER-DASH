@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+
 
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
@@ -24,11 +26,12 @@ import EditLenderBranch from "./pages/EditLenderBranch";
 import ViewLenderBranch from "./pages/ViewLenderBranch";
 
 
-/* ✅ WAREHOUSE */
 import WarehouseMaster from "./pages/WarehouseMaster";
 import WarehouseDetail from "./pages/WarehouseDetail";
 import CreateWarehouse from "./pages/CreateWarehouse";
 import EditWarehouse from "./pages/EditWarehouse";
+
+import Dashboard from "./pages/Dashboard";
 
 
 
@@ -73,7 +76,11 @@ export default function App() {
         <Header toggleSidebar={toggleSidebar} />
 
         <Routes>
-          <Route path="/" element={<div>Dashboard (Coming Soon)</div>} />
+          {/* ✅ DEFAULT REDIRECT */}
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+
+          {/* DASHBOARD */}
+          <Route path="/dashboard" element={<Dashboard />} />
 
           {/* LENDER */}
           <Route path="/lenders" element={<LenderMaster />} />
@@ -93,21 +100,19 @@ export default function App() {
           <Route path="/engineers/edit/:id" element={<EditFieldEngineer />} />
           <Route path="/engineers/view/:id" element={<FieldEngineerDetail />} />
 
-          {/* ✅ WAREHOUSE */}
+          {/* WAREHOUSE */}
           <Route path="/warehouse" element={<WarehouseMaster />} />
-          <Route path="/warehouse/view/:id" element={<WarehouseDetail />} />
           <Route path="/warehouse/create" element={<CreateWarehouse />} />
-          <Route path="/warehouse/edit/:id" element={<EditWarehouse />} />
-
-
+          <Route path="/warehouse/edit/:id" element={<CreateWarehouse />} />
+          <Route path="/warehouse/view/:id" element={<WarehouseDetail />} />
 
           {/* LENDER BRANCH */}
           <Route path="/lender-branches" element={<LenderBranchMaster />} />
           <Route path="/lender-branches/add" element={<EditLenderBranch />} />
           <Route path="/lender-branches/edit/:id" element={<EditLenderBranch />} />
           <Route path="/lender-branches/view/:id" element={<ViewLenderBranch />} />
-
         </Routes>
+
       </div>
 
       {/* Mobile overlay */}
